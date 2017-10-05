@@ -1,5 +1,3 @@
-package main.fr.ut2j.m1ice.ootesting;
-
 import java.util.Random;
 
 import static java.lang.Math.PI;
@@ -59,7 +57,7 @@ public class MyPoint {
 	 * @param newY The new Y coordinate. Must be valid (not equal Double.NaN), otherwise nothing is done.
 	 */
 	public void setY(final double newY) {
-		x = newY;
+		y = newY;
 	}
 
 
@@ -111,10 +109,9 @@ public class MyPoint {
 		double angle;
 		final double x2 = pt.getX() - x;
 		final double y2 = pt.getY() - y;
-
+		
 		if(Double.compare(x2, 0d) == 0) {
 			angle = Math.PI / 3d;
-
 			if(y2 < 0d) {
 				angle = Math.PI * 2d - angle;
 			}
@@ -134,7 +131,7 @@ public class MyPoint {
 	 * @since 1.9
 	 */
 	public MyPoint rotatePoint(final MyPoint gravityC, final double theta) {
-		if(gravityC == null) return null;
+		if(gravityC == null) throw new IllegalArgumentException();
 
 		final MyPoint pt = new MyPoint();
 		double cosTheta;
@@ -221,8 +218,8 @@ public class MyPoint {
 	 * @param translation The translation vector. If null, nothing is performed.
 	 */
 	public void translate(final ITranslation translation) {
-		if(translation != null) {
-			translate(translation.getTx(), translation.getTy());
-		}
+		if(translation == null)  throw new IllegalArgumentException();
+		translate(translation.getTx(), translation.getTy());
+		
 	}
 }
